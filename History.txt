@@ -1,0 +1,2 @@
+== 1.0 / 2008-04-25
+  * First public release

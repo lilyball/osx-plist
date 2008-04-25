@@ -1,19 +1,9 @@
-require './plist'
+require 'rubygems'
+require 'osx/plist'
 require 'stringio'
 require 'test/unit'
 
 class TestPlist < Test::Unit::TestCase
-  def test_deprecation_warning
-    savederr = STDERR.clone
-    rd, wr = IO.pipe
-    STDERR.reopen(wr)
-    plist = PropertyList.load("{foo = bar; }")
-    plist, format = PropertyList.load("{foo = bar; }", true)
-    STDERR.reopen(savederr)
-    wr.close
-    assert_equal( "Warning: PropertyList is deprecated. Use OSX::PropertyList instead.\n", rd.read)
-  end
-  
   def test_string
     plist = OSX::PropertyList.load("{foo = bar; }")
     assert_equal( { "foo" => "bar" }, plist )
@@ -51,7 +41,7 @@ class TestPlist < Test::Unit::TestCase
   end
 
   def test_io
-    plist, format = OSX::PropertyList.load(DATA, true)
+    plist, format = OSX::PropertyList.load(File.read("#{File.dirname(__FILE__)}/fixtures/xml_plist"), true)
 
     hash = setup_hash
 
@@ -77,32 +67,3 @@ class TestPlist < Test::Unit::TestCase
     assert_equal(hash, OSX::PropertyList.load(hash.to_plist))
   end
 end
-
-__END__
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/OSX::PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>string!</key>
-  <string>indeedy</string>
-  <key>bar</key>
-  <array>
-    <integer>1</integer>
-    <integer>2</integer>
-    <integer>3</integer>
-  </array>
-  <key>foo</key>
-  <dict>
-    <key>correct?</key>
-    <true/>
-    <key>pi</key>
-    <real>3.14159265</real>
-    <key>random</key>
-    <data>
-    I0VniQ==
-    </data>
-    <key>today</key>
-    <date>2005-04-28T06:32:56Z</date>
-  </dict>
-</dict>
-</plist>
