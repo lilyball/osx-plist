@@ -13,7 +13,7 @@ osx/plist is a Ruby library for manipulating Property Lists natively using the b
 == INSTALL:
 
   $ gem sources -a http://gems.github.com/ (you only need to do this once)
-  $ gem install kballard-plist
+  $ gem install kballard-osx-plist
 
 == SOURCE:
 
