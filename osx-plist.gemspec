@@ -1,4 +1,3 @@
-(in /Users/kevin/Dev/Ruby/osx-plist)
 Gem::Specification.new do |s|
   s.name = %q{osx-plist}
   s.version = "1.0"
