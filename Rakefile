@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'hoe'
 
-Hoe.new('osx-plist', "1.0") do |p|
+Hoe.new('osx-plist', "1.0.1") do |p|
   p.author = "Kevin Ballard"
   p.email = "kevin@sb.org"
   p.summary = "Property List manipulation for OS X"
