@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.date = %q{2009-09-17}
   s.description = %q{osx/plist is a Ruby library for manipulating Property Lists natively using the built-in support in OS X.}
   s.email = ["kevin@sb.org"]
+  s.extensions = ["ext/plist/extconf.rb"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.txt"]
   s.files = ["History.txt", "Manifest.txt", "README.txt", "Rakefile", "ext/plist/extconf.rb", "ext/plist/plist.c", "test/fixtures/xml_plist", "test/suite.rb", "test/test_plist.rb"]
   s.has_rdoc = true
