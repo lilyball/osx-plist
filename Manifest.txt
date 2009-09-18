@@ -4,7 +4,6 @@ README.txt
 Rakefile
 ext/plist/extconf.rb
 ext/plist/plist.c
-plist.gemspec
 test/fixtures/xml_plist
 test/suite.rb
 test/test_plist.rb

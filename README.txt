@@ -1,6 +1,7 @@
 == osx/plist
-    by Kevin Ballard
-    http://github.com/kballard/osx-plist
+
+* http://github.com/kballard/osx-plist
+* by Kevin Ballard
 
 == DESCRIPTION:
 
