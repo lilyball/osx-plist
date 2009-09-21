@@ -1,2 +1,8 @@
+== 1.0.2 / 2009-09-17
+  * Build properly under Mac OS X 10.6
+
+== 1.0.1 / 2009-02-05
+  * Ruby 1.9.1 compatibility
+
 == 1.0 / 2008-04-25
   * First public release
