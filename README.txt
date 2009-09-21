@@ -1,11 +1,11 @@
-== osx/plist
+== osx-plist
 
 * http://github.com/kballard/osx-plist
 * by Kevin Ballard
 
 == DESCRIPTION:
 
-osx/plist is a Ruby library for manipulating Property Lists natively using the built-in support in OS X.
+osx-plist is a Ruby library for manipulating Property Lists natively using the built-in support in OS X.
 
 == REQUIREMENTS:
 
@@ -18,7 +18,7 @@ osx/plist is a Ruby library for manipulating Property Lists natively using the b
 
 == SOURCE:
 
-osx/plist's git repo is available on GitHub, which can be browsed at:
+osx-plist's git repo is available on GitHub, which can be browsed at:
 
   http://github.com/kballard/osx-plist
 
