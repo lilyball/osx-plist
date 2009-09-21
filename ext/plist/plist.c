@@ -43,19 +43,6 @@
  *
  */
 
-/*
- * Document-class: PropertyList
- *
- * The PropertyList module provides a means of converting a
- * Ruby Object to a Property List.
- *
- * The various Objects that can be converted are the ones
- * with an equivalent in CoreFoundation. This includes: String,
- * Integer, Float, Boolean, Time, Hash, and Array.
- *
- * See also: String#blob?, String#blob=, and Object#to_plist
- */
-
 #include <ruby.h>
 #if HAVE_RUBY_ST_H
 #include <ruby/st.h>
@@ -117,14 +104,13 @@ void raiseError(CFStringRef error) {
 }
 
 /* call-seq:
- *    PropertyList.load(obj)         -> object
- *    PropertyList.load(obj, format) -> [object, format]
+ *    load(obj, format = false)
  *
  * Loads a property list from an IO stream or a String and creates
  * an equivalent Object from it.
  *
- * If +format+ is provided, it returns one of
- * <tt>:xml1</tt>, <tt>:binary1</tt>, or <tt>:openstep</tt>.
+ * If +format+ is +true+, it returns an array of <tt>[object, format]</tt>
+ * where +format+ is one of <tt>:xml1</tt>, <tt>:binary1</tt>, or <tt>:openstep</tt>.
  */
 VALUE plist_load(int argc, VALUE *argv, VALUE self) {
 	VALUE io, retFormat;
@@ -331,8 +317,7 @@ VALUE convertPlistToString(CFPropertyListRef plist, CFPropertyListFormat format)
 }
 
 /* call-seq:
- *    PropertyList.dump(io, obj)         -> Integer
- *    PropertyList.dump(io, obj, format) -> Integer
+ *    dump(io, obj, format = :xml1)
  *
  * Writes the property list representation of +obj+
  * to the IO stream (must be open for writing).
@@ -375,8 +360,7 @@ VALUE plist_dump(int argc, VALUE *argv, VALUE self) {
 }
 
 /* call-seq:
- *    object.to_plist         -> String
- *    object.to_plist(format) -> String
+ *    object.to_plist(format = :xml1)
  *
  * Converts the object to a property list representation
  * and returns it as a string.
@@ -534,7 +518,7 @@ CFDateRef convertTime(VALUE obj) {
 }
 
 /* call-seq:
- *    str.blob? -> Boolean
+ *    str.blob?
  *
  * Returns whether or not +str+ is a blob.
  */
@@ -548,7 +532,7 @@ VALUE str_blob(VALUE self) {
 }
 
 /* call-seq:
- *    str.blob = bool -> bool
+ *    str.blob = bool
  *
  * Sets the blob status of +str+.
  */
@@ -561,8 +545,25 @@ VALUE str_setBlob(VALUE self, VALUE b) {
 	}
 }
 
-/* Bridge to CoreFoundation for reading/writing Property Lists.
- * Only works when CoreFoundation is available.
+/*
+ * Document-module: OSX
+ */
+
+/*
+ * Document-module: OSX::PropertyList
+ *
+ * The PropertyList module provides a means of converting a
+ * Ruby Object to a Property List.
+ *
+ * The various Objects that can be converted are the ones
+ * with an equivalent in CoreFoundation. This includes: String,
+ * Integer, Float, Boolean, Time, Hash, and Array.
+ *
+ * See also: String#blob?, String#blob=, and Object#to_plist
+ */
+
+/*
+ * Document-class: OSX::PropertyListError
  */
 void Init_plist() {
 	mOSX = rb_define_module("OSX");
@@ -575,6 +576,7 @@ void Init_plist() {
 	ePropertyListError = rb_define_class_under(mOSX, "PropertyListError", rb_eStandardError);
 	id_gm = rb_intern("gm");
 	timeEpoch = rb_funcall(rb_cTime, id_gm, 1, INT2FIX(2001));
+	/* Time.gm(2001): The Cocoa epoch of January 1st, 2001*/
 	rb_define_const(mPlist, "EPOCH", timeEpoch);
 	id_plus = rb_intern("+");
 	id_minus = rb_intern("-");
