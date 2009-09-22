@@ -28,7 +28,7 @@ and cloned from:
 
 == USAGE:
 
-One new module is provided, named OSX::PropertyList. It has the following 2 methods:
+One new module is provided, named OSX::PropertyList. It has the following 4 methods:
 
 ==== OSX::PropertyList.load(input, format = false)
 
@@ -39,6 +39,14 @@ Loads the property list from input, which is either an IO, StringIO, or a string
 Dumps the property list object into output, which is either an IO or StringIO. Format determines the property list format to write out. The supported values are :xml1,, :binary1, and :openstep; however, OpenStep format appears to not be supported by the system for output anymore.
 
 The valid formats are :xml1, :binary1, and :openstep. When loading a property list, if the format is something else (not possible under any current OS, but perhaps if a future OS includes another type) then the format will be :unknown.
+
+==== OSX::PropertyList.load_file(filepath, format = false)
+
+Calls OSX::PropertyList.load() on the file at the given path.
+
+==== OSX::PropertyList.dump(filepath, obj, format = :xml1)
+
+Calls OSX::PropertyList.dump() on the file at the given path.
 
 This module also provides a method on Object:
 
