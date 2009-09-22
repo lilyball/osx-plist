@@ -1,3 +1,7 @@
+== 1.0.3 / 2009-09-21
+  * Add two new methods OSX::PropertyList.load_file and OSX::PropertyList.dump_file
+  * Clean up the RDoc documentation
+
 == 1.0.2 / 2009-09-17
   * Build properly under Mac OS X 10.6
 
