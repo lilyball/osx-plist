@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'osx/plist'
 require 'stringio'
+require 'tempfile'
 require 'test/unit'
 
 class TestPlist < Test::Unit::TestCase
@@ -65,5 +66,23 @@ class TestPlist < Test::Unit::TestCase
     assert_equal("foo", OSX::PropertyList.load("foo".to_plist))
     hash = setup_hash()
     assert_equal(hash, OSX::PropertyList.load(hash.to_plist))
+  end
+
+  def test_load_file
+    plist, format = OSX::PropertyList.load_file("#{File.dirname(__FILE__)}/fixtures/xml_plist", true)
+
+    hash = setup_hash
+
+    assert_equal(hash, plist)
+    assert_equal(:xml1, format)
+  end
+
+  def test_dump_file
+    hash = setup_hash
+    Tempfile.open("test_plist") do |temp|
+      OSX::PropertyList.dump_file(temp.path, hash)
+      hash2 = OSX::PropertyList.load_file(temp.path)
+      assert_equal(hash, hash2)
+    end
   end
 end

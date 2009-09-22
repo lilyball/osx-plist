@@ -7,3 +7,10 @@ Hoe.spec 'osx-plist' do
   self.summary = "Property List manipulation for OS X"
   self.spec_extras = {:extensions => "ext/plist/extconf.rb"}
 end
+
+# override Hoe's default :test task
+Rake::Task["test"].clear
+desc "Run the unit tests"
+task :test do
+  ruby "test/test_plist.rb"
+end
