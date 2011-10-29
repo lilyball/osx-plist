@@ -44,7 +44,7 @@ The valid formats are :xml1, :binary1, and :openstep. When loading a property li
 
 Calls OSX::PropertyList.load() on the file at the given path.
 
-==== OSX::PropertyList.dump(filepath, obj, format = :xml1)
+==== OSX::PropertyList.dump_file(filepath, obj, format = :xml1)
 
 Calls OSX::PropertyList.dump() on the file at the given path.
 
