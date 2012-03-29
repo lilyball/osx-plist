@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/kballard/osx-plist}
   s.rdoc_options = ["--main", "README.txt"]
   s.require_paths = ["lib", "ext"]
-  s.rubyforge_project = %q{osx-plist}
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Property List manipulation for OS X}
   s.test_files = ["test/test_plist.rb"]
